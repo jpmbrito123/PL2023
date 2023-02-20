@@ -99,7 +99,7 @@ def main():
         print("3 - Percentagem de doentes por nível de colestrol")
         print("0 - Sair\n")
 
-        option = input("Select an option: ")
+        option = input("Escolha uma opção: ")
         print()
         if option == '1':
             print_table(1, sexos)
