@@ -12,7 +12,7 @@ def calcula(string):
             on=False
         if a.isdigit() and on:
             soma=soma+int(a)
-        if a == 'x':
+        if a == '=':
             print(soma)
             res=0
         i+=1
