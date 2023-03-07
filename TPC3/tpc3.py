@@ -90,18 +90,21 @@ def top5seculo(parsed_file):
 def frequencia_parentesco(parsed_file):
     regex1 = re.compile(r",[\w\s]+.[\s*](?i:Proc)|,[\w\s]+.[:]+")
     regex2 = re.compile(r".[\s*](?i:Proc.)")
-    dict_parentesco = {}
+    parentesco = dict()
 
-    for item in parsed_file:
-        obs = item.get("obs", "")
-        matches = regex1.findall(obs)
-        for match in matches:
-            pos = match.find(".")
-            elem = match[1:pos].strip()
-            dict_parentesco[elem] = dict_parentesco.get(elem, 0) + 1
+    for d in data:
+        match = regex1.findall(d["obs"])
+        if match:
+            for elem in match:
+                pos = elem.find(".")
+                elem = elem[1:-(len(elem) - pos)]
 
-    print("\n\n\n\n")
-    print(dict_parentesco)
+                if elem not in parentesco:
+                    parentesco[elem] = 0
+
+                parentesco[elem] += 1
+
+    print(parentesco)
 
 
 def convert_to_json(data, output):
